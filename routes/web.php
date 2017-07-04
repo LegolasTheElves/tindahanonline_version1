@@ -10,8 +10,38 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//index route
 Route::get('/', [
     'uses'=>'ProductController@getIndex',
     'as' => 'product.index'
 ]);
+
+Route::group(['prefix'=>'user'], function(){
+  //sign up routes
+Route::get('/signup',[
+   'uses' =>'UserController@getSignup',
+    'as' => 'user.signup'
+]);
+Route::post('/signup', [
+   'uses' => 'UserController@postSignup',
+    'as' =>'user.signup'
+]);
+//sign in routes
+Route::get('/signin',[
+   'uses' =>'UserController@getSignin',
+    'as' => 'user.signin'
+]);
+Route::post('/signin', [
+   'uses' => 'UserController@postSignin',
+    'as' =>'user.signin'
+]);
+Route::get('/profile', [
+   'uses' => 'UserController@getProfile',
+    'as' => 'user.profile'
+]);
+
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'user.logout'
+]);
+}); 
