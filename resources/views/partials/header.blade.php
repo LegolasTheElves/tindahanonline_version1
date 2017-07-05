@@ -19,10 +19,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Manager<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{route('user.signup')}}">User SignUp</a></li>
-            <li><a href="{{route('user.signin')}}">User SignIn</a></li>
+           @if(Auth::check())
+            <li><a href="{{route('user.profile')}}">User Profile</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{{route('user.logout')}}">Loguot</a></li>
+           @else
+           <li><a href="{{route('user.signup')}}">User SignUp</a></li>
+            <li><a href="{{route('user.signin')}}">User SignIn</a></li>
+           @endif
           </ul>
         </li>
       </ul>

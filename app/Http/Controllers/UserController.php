@@ -23,8 +23,8 @@ class UserController extends Controller
             'password' => bcrypt($request ->input('password'))
         ]);
         $user->save();
-        
-        return redirect()->route('product.index');
+        Auth::login($user);
+        return redirect()->route('user.profile');
     }
     //function to access the signin view
      public function getSignin(){
