@@ -10,7 +10,7 @@ class Cart
     public $totalPrice = 0;
     public $description = null;
      
-    public function __constract($oldCart){
+    public function __construct($oldCart){
         if($oldCart){
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
