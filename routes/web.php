@@ -20,7 +20,21 @@ Route::get('/add-to-cart/{id}',[
     'uses' => 'ProductController@getAddToCart',
     'as' => 'product.AddToCart'
 ]);
-
+//shopping cart page
+Route::get('/shopping-cart',[
+    'uses' => 'ProductController@getCart',
+    'as' => 'product.shoppingCart'
+]);
+//checkout route
+Route::get('/checkout',[
+   'uses' =>'ProductController@getCheckout',
+   'as' =>'checkout'
+]);
+Route::post('/checkout',[
+   'uses' =>'ProductController@postCheckout',
+   'as' =>'checkout'
+]);
+//group route for user management
 Route::group(['prefix'=>'user'], function(){
     Route::group(['middleware'=>'guest'], function(){
           //sign up routes

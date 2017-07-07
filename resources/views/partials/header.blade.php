@@ -16,8 +16,8 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-        <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
-        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+        <a href="{{route('product.shoppingCart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
+        <span class="label label-danger">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
         </a>
         </li>
         <li class="dropdown">
