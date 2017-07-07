@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 class UserController extends Controller
 {
     //function to access the signup view
@@ -24,6 +25,12 @@ class UserController extends Controller
         ]);
         $user->save();
         Auth::login($user);
+        //check if their is session in cart to it will direct in checkout
+        if(Session::has('oldUrl')){
+                $oldUrl = Session::get('oldUrl');
+                Session::forget('oldUrl');
+                return redirect()->to($oldUrl);
+            }
         return redirect()->route('user.profile');
     }
     //function to access the signin view
@@ -40,6 +47,11 @@ class UserController extends Controller
         if(Auth::attempt(['email' =>$request->input('email'),
                        'password'=>$request->input('password')
                       ])){
+            if(Session::has('oldUrl')){
+                $oldUrl = Session::get('oldUrl');
+                Session::forget('oldUrl');
+                return redirect()->to($oldUrl);
+            }
             return redirect()->route('user.profile');
         }
         return redirect()->back();
