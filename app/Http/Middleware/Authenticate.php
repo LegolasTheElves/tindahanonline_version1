@@ -22,7 +22,7 @@ class Authenticate
                 return response('Unauthorized.', 401);
             } else {
 				Session::put('oldUrl', $request->url());
-				return redirect('user/signin');
+				return redirect()->route('user.signin');
             }
         }
 
