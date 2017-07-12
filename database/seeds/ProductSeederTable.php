@@ -19,20 +19,20 @@ class ProductSeederTable extends Seeder
         ]);
         $product ->save();*/
         
-        $images = [ '/images/sony.jpg',
+        $images = [ '/images/Galaxy-S8-4.jpg'/*,
                     '/images/xiaomi.png',
                     '/images/moto.jpg',
                     '/images/iphone8.jpg',
-                    '/images/nokia1.jpg'
+                    '/images/nokia1.jpg'*/
                   ];
-        $titles = ['Xiaome Mi Mix', 'Samsung 8', 'Nokia 5', 'Iphone 8', 'Sony Experia'];
-        $descriptions = ['The latest edgeless smartphone.',
+        $titles = ['Samsung 8 edgeless'/*, 'Samsung 8', 'Nokia 5', 'Iphone 8', 'Sony Experia'*/];
+        $descriptions = ['The latest smartphone.'/*,
                         'The latest and powerful smartphone.',
                         'The latest and durable smartphone.',
                         'The latest and expensive smartphone.',
-                        'The latest and quality smartphone.'
+                        'The latest and quality smartphone.'*/
                        ];
-        $prices = ['10','11','13','12','15'];
+        $prices = ['18'/*,'11','13','12','15'*/];
         array_map(function ($image, $title, $description, $price){
             $now = date('Y-m-d H:i:s', strtotime('now'));
             DB::table('products')->insert([
