@@ -69,7 +69,7 @@ Route::group(['prefix'=>'user'], function(){
             'as' =>'user.signin'
         ]);
     });
- Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>'auth'], function(){
         Route::get('/profile', [
         'uses' => 'UserController@getProfile',
         'as' => 'user.profile'
