@@ -2,6 +2,7 @@
 
 return [
 
+    
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -53,7 +54,7 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        
+
         'default' => 'pgsql',
 
         'pgsql' => [
