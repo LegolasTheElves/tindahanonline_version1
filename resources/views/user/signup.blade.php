@@ -11,6 +11,10 @@
         </div>
         @endif
         <form action="{{route('user.signup')}}" method="post">
+           <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" name="username" class="form-control" value="{!! old('username') !!}">
+            </div>
             <div class="form-group">
                 <label>Email</label>
                 <input type="text" id="email" name="email" class="form-control" value="{!! old('email') !!}">

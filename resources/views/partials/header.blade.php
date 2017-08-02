@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-            <a class="navbar-brand name-style" href="{{route('product.index')}}">TindahanOnline</a>
+            <a class="navbar-brand name-style" href="{{route('product.index')}}"><span class="glyphicon glyphicon-home"></span> ShopTa</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,14 +17,16 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" method="GET" action="{{ route('search') }}" role="search">
                         <div class="input-group add-on">
-                            <input class="form-control" placeholder="Search" name="search" id="srch-term" type="text">
+                            <input type="text" name="titlesearch" class="form-control" placeholder="Search Product Name" value="{{ old('titlesearch') }}">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                               <button class="btn btn-success">Search</button>
                             </div>
                         </div>
                     </form>
+                    
+                    
                 </li>
                 <li>
                     <a href="{{route('product.shoppingCart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
@@ -32,7 +34,9 @@
         </a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Manager<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  {{ Auth::check() ? Auth::user()->username : 'UserAccount' }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @if(Auth::check())
                         <li><a href="{{route('user.profile')}}">User Profile</a></li>

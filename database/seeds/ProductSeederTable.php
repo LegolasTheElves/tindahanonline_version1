@@ -26,7 +26,8 @@ class ProductSeederTable extends Seeder
                         'The latest and quality smartphone.'
                        ];
         $prices = ['18','11','13','12','15'];
-        array_map(function ($image, $title, $description, $price){
+        $categories = ['1','4','3','4','3'];
+        array_map(function ($image, $title, $description, $price, $category){
             $now = date('Y-m-d H:i:s', strtotime('now'));
             DB::table('products')->insert([
                 'imagePath'=>$image,
@@ -34,9 +35,9 @@ class ProductSeederTable extends Seeder
                 'updated_at'=>$now,
                 'title'=> $title,
                 'description'=>$description,
-                'price'=>$price
+                'price'=>$price,
+                'category_id'=>$category
             ]);
-        }, $images, $titles, $descriptions, $prices);
-        
+        }, $images, $titles, $descriptions, $prices, $categories);
     }
 }

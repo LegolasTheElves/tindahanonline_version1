@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Product;
 use App\Order;
+use Illuminate\Support\Facades\DB;
+use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -14,9 +17,44 @@ class ProductController extends Controller
     //product index controller
      public function getIndex()
      {
-         $products = Product::all();
-         return view('shop.index', ['products' => $products]);
+         //display all products
+         $products = DB::table('products')
+             ->join('categories', 'products.category_id', '=' ,'categories.id')
+             ->select('products.*', 'categories.*')
+             ->paginate(6);
+         //display all mobiles category
+        $mobiles = DB::table('products')
+             ->join('categories', 'products.category_id', '=' ,'categories.id')
+             ->select('products.*', 'categories.*')
+             ->where('category_id', 1)
+             ->paginate(6);
+         return view('shop.index', ['products' => $products, 'mobiles' => $mobiles]);
+
      }
+    //CONTROLLER for search
+    /*public function getSearch($key)
+    {
+        $product_s = Product::search($key)->get();
+        return view('shop.search', compact('product_s'));
+    }*/
+    public function getSearch(Request $request)
+    {
+    	if($request->has('titlesearch')){
+    		$products = Product::search($request->titlesearch)
+    			->paginate(6);
+    	}else{
+    		$products = Product::paginate(6);
+    	}
+    	return view('shop.search',compact('products'));
+    }
+
+    
+    
+    
+    
+    
+    
+    
     //add to cart controller 
      public function getAddToCart(Request $request, $id){
         $product = Product::find($id);

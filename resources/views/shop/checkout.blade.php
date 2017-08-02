@@ -15,7 +15,7 @@
                          <div class="col-xs-12">
                              <div class="form-group">
                                  <label for="name">Name</label>
-                                 <input type="text" id="name" name="name" class="form-control" required>
+                                 <input type="text" id="name" name="name" class="form-control" value="{{Auth::user()->username}}" required>
                              </div>
                          </div>
                          <div class="col-xs-12">

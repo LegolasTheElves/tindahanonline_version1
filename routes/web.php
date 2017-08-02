@@ -81,9 +81,10 @@ Route::group(['middleware'=>'auth'], function(){
  });
 }); 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+//route for search
+Route::get('/search', [
+    'uses'=>'ProductController@getSearch',
+    'as' => 'search'
+]);
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

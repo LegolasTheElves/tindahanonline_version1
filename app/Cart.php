@@ -20,7 +20,12 @@ class Cart
     }
     // funtion that add item to cart
     public function add($item, $id){
-        $storedItem = ['qty' => 0, 'price' => $item->price, 'description' =>$item->description , 'item' => $item];
+        $storedItem = [
+            'qty' => 0, 
+            'price' => $item->price, 
+            'description' =>$item->description , 
+            'item' => $item
+        ];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $storedItem = $this->items[$id];
