@@ -14,6 +14,19 @@ use Stripe\Charge;
 use Stripe\Stripe;
 class ProductController extends Controller
 {
+    //admin controller retrieve all data from database
+    public function adminIndex(){
+        $products = DB::table('products')->get();
+        return view('admin.myproducts',compact('products'));
+    }
+    //delete single item
+    public function destroy($id)
+    {
+    	DB::table('products')->delete($id);
+    	return response()->json(['success'=>"Product Deleted successfully.",'tr'=>'tr_'.$id]);
+    }
+   
+    
     //product index controller
      public function getIndex()
      {
@@ -43,18 +56,10 @@ class ProductController extends Controller
     		$products = Product::search($request->titlesearch)
     			->paginate(6);
     	}else{
-    		$products = Product::paginate(6);
+    		 return redirect()->route('product.index');
     	}
-    	return view('shop.search',compact('products'));
+    	return view('shop.search', compact('products'));
     }
-
-    
-    
-    
-    
-    
-    
-    
     //add to cart controller 
      public function getAddToCart(Request $request, $id){
         $product = Product::find($id);

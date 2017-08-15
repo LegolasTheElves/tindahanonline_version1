@@ -87,4 +87,17 @@ Route::get('/search', [
     'uses'=>'ProductController@getSearch',
     'as' => 'search'
 ]);
-
+//admin route
+Route::group(['prefix'=>'admin'], function(){
+    Route::group(['middleware'=>'guest'], function(){
+        Route::get('/myproducts', [
+            'uses'=>'ProductController@adminIndex',
+            'as' => 'myproducts'
+        ]);
+        //delete single item
+        Route::get('/deleteOne/{id}', [
+            'uses'=>'ProductController@destroy',
+            'as' => 'deleteOne'
+        ]);
+    });
+});
